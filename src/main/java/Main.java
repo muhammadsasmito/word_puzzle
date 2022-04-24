@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class Main {
 
-  public static ArrayList getPuzzleApi(String word) throws IOException, InterruptedException, ParseException {
+  public static ArrayList<Object> getPuzzleApi(String word) throws IOException, InterruptedException, ParseException {
     HttpClient client = HttpClient.newHttpClient();
     HttpRequest request = HttpRequest.newBuilder()
         .uri(URI.create("https://www.dictionary.com/e/wp-json/dictionary/v1/word-finder?letters=" + word))
@@ -28,7 +28,7 @@ public class Main {
     JSONParser parser = new JSONParser();
     JSONObject json = (JSONObject) parser.parse(response.body());
     JSONArray dataResult = (JSONArray) json.get("data");
-    ArrayList dataArray = new ArrayList<>();
+    ArrayList<Object> dataArray = new ArrayList<>();
     dataResult.forEach((o) -> {
       JSONObject value = (JSONObject) o;
       //System.out.println(value.get("word"));
@@ -38,20 +38,17 @@ public class Main {
     return dataArray;
   }
 
-  public static void main(String[] args) {
-    int score = 0;
-    System.out.println("Coepoe Word Puzzle");
-    System.out.println("==================");
-    System.out.println("\nRules :");
-    System.out.println("1. Create a word using given characters, min 3 characters & max 6 characters.");
-    System.out.println("2. Each level, You have 10 chances to answers correctly.");
-    System.out.println("3. To get through to next level, you have to score 70 points each level");
-    System.out.println("Level 1");
-    System.out.println("-------");
+  public static int level(String word, int score) {
     try {
-      System.out.println("    d   e   t    t   l   i");
+      System.out.print("            ");
+      for (int i = 0; i < word.length(); i++) {
+        System.out.print(word.replace(',', ' ').charAt(i) + "  ");
+        if (i == word.length() - 1) {
+          System.out.println("");
+        }
+      }
       ArrayList<String> ans = new ArrayList<>();
-      ArrayList bow = getPuzzleApi("d,e,t,t,l,i");
+      ArrayList<Object> bow = getPuzzleApi(word);
       //System.out.println(bow);
       String guess;
       for (int i = 1; i <= 10; i++) {
@@ -71,11 +68,71 @@ public class Main {
           }
         } while (true);
       }
+      System.out.println("\nYou had answered 10 times with " + score / 10 + " right answers ..");
 
     } catch (IOException | InterruptedException | ParseException e) {
       e.printStackTrace();
     }
+    return score;
+  }
 
+  public static void main(String[] args) {
+    int score1 = 0, score2 = 0, score3 = 0;
+    Scanner inputRepeat = new Scanner(System.in);
+    System.out.println("Coepoe Word Puzzle");
+    System.out.println("==================");
+    System.out.println("\nRules :");
+    System.out.println("1. Create a word using given characters, min 3 characters & max 6 characters.");
+    System.out.println("2. Each level, You have 10 chances to answers correctly.");
+    System.out.println("3. To get through to next level, you have to score 70 points each level");
+    String repeat = "y";
+    do {
+      score1 = 0;
+      System.out.println("Level 1");
+      System.out.println("-------");
+      score1 = level("d,e,t,t,l,i", score1);
+      if (score1 / 10 >= 70) break;
+      else {
+        System.out.println("Do you want to retry [y/n] ?");
+        repeat = inputRepeat.next();
+        if (repeat.equals("n")) {
+          System.exit(0);
+        }
+      }
+    } while (repeat.equals("y"));
+
+    do {
+      score2 = 0;
+      System.out.println("Level 2");
+      System.out.println("-------");
+      score2 = level("s,e,c,a,e,n", score2);
+      if (score2 / 10 >= 70) break;
+      else {
+        System.out.println("Do you want to retry [y/n] ?");
+        repeat = inputRepeat.next();
+        if (repeat.equals("n")) {
+          System.exit(0);
+        }
+      }
+    } while (repeat.equals("y"));
+
+    do {
+      score3 = 0;
+      System.out.println("Level 3");
+      System.out.println("-------");
+      score3 = level("h,k,r,n,e,o", score3);
+      if (score3 / 10 >= 70) break;
+      else {
+        System.out.println("Do you want to retry [y/n] ?");
+        repeat = inputRepeat.next();
+        if (repeat.equals("n")) {
+          System.exit(0);
+        }
+      }
+    } while (repeat.equals("y"));
+
+
+    System.out.println("Overall score : " + score1 + score2 + score3);
   }
 
 }
