@@ -31,7 +31,7 @@ public class Main {
     dataResult.forEach((o) -> {
       JSONObject value = (JSONObject) o;
       //System.out.println(value.get("word"));
-      dataArray.add(value.get("word"));
+      if (value.get("word").toString().length() > 2) dataArray.add(value.get("word"));
     });
 
     return dataArray;
