@@ -72,6 +72,11 @@ public class Main {
         } while (true);
       }
       System.out.println("\nYou had answered 10 times with " + score / 10 + " right answers ..");
+      System.out.println("\nCorrect Answers :");
+      bow.forEach(o -> {
+        System.out.print(o + " ");
+      });
+      System.out.println("\n");
 
     } catch (IOException | InterruptedException | ParseException e) {
       e.printStackTrace();
@@ -91,7 +96,7 @@ public class Main {
     String repeat = "y";
     do {
       score1 = 0;
-      System.out.println("Level 1");
+      System.out.println("\nLevel 1");
       System.out.println("-------");
       score1 = level("d,e,t,t,l,i", score1);
       if (score1 / 10 >= 7) break;
@@ -106,7 +111,7 @@ public class Main {
 
     do {
       score2 = 0;
-      System.out.println("Level 2");
+      System.out.println("\nLevel 2");
       System.out.println("-------");
       score2 = level("s,e,c,a,e,n", score2);
       if (score2 / 10 >= 7) break;
@@ -121,7 +126,7 @@ public class Main {
 
     do {
       score3 = 0;
-      System.out.println("Level 3");
+      System.out.println("\nLevel 3");
       System.out.println("-------");
       score3 = level("h,k,r,n,e,o", score3);
       if (score3 / 10 >= 7) break;
