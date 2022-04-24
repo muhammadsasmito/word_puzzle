@@ -77,7 +77,7 @@ public class Main {
   }
 
   public static void main(String[] args) {
-    int score1 = 0, score2 = 0, score3 = 0;
+    int score1 = 0, score2 = 0, score3 = 0, finalScore = 0;
     Scanner inputRepeat = new Scanner(System.in);
     System.out.println("Coepoe Word Puzzle");
     System.out.println("==================");
@@ -131,8 +131,8 @@ public class Main {
       }
     } while (repeat.equals("y"));
 
-
-    System.out.println("Overall score : " + score1 + score2 + score3);
+    finalScore = score1 + score2 + score3;
+    System.out.println("Overall score : " + finalScore);
   }
 
 }
