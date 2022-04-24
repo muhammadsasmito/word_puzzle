@@ -91,7 +91,7 @@ public class Main {
       System.out.println("Level 1");
       System.out.println("-------");
       score1 = level("d,e,t,t,l,i", score1);
-      if (score1 / 10 >= 70) break;
+      if (score1 / 10 >= 7) break;
       else {
         System.out.println("Do you want to retry [y/n] ?");
         repeat = inputRepeat.next();
@@ -106,7 +106,7 @@ public class Main {
       System.out.println("Level 2");
       System.out.println("-------");
       score2 = level("s,e,c,a,e,n", score2);
-      if (score2 / 10 >= 70) break;
+      if (score2 / 10 >= 7) break;
       else {
         System.out.println("Do you want to retry [y/n] ?");
         repeat = inputRepeat.next();
@@ -121,7 +121,7 @@ public class Main {
       System.out.println("Level 3");
       System.out.println("-------");
       score3 = level("h,k,r,n,e,o", score3);
-      if (score3 / 10 >= 70) break;
+      if (score3 / 10 >= 7) break;
       else {
         System.out.println("Do you want to retry [y/n] ?");
         repeat = inputRepeat.next();
