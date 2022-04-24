@@ -11,7 +11,6 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Main {
 
   public static ArrayList<Object> getPuzzleApi(String word) throws IOException, InterruptedException, ParseException {
@@ -58,6 +57,10 @@ public class Main {
           guess = input.next();
           if (ans.contains(guess)) {
             System.out.println("You had already type this word before..");
+          } else if (guess.length() < 3) {
+            System.out.println("Sorry minimum character is 3..");
+          } else if (guess.length() > 6) {
+            System.out.println("Sorry maximum character is 6..");
           } else {
             ans.add(guess);
             if (bow.contains(guess)) {
